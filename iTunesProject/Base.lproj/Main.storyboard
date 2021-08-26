@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tkS-da-irk">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xrb-sK-W5O">
+>>>>>>> ca062cca9fcb298e6d0c07f0d3f5c70645043798
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -8,24 +12,39 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+<<<<<<< HEAD
         <scene sceneID="wwI-me-3zl">
             <objects>
                 <tableViewController id="tkS-da-irk" customClass="ViewController" customModule="iTunesProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lHr-OV-Cxo">
+=======
+        <scene sceneID="bRi-Sh-0ob">
+            <objects>
+                <tableViewController id="xrb-sK-W5O" customClass="ViewController" customModule="iTunesProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ujg-8k-glO">
+>>>>>>> ca062cca9fcb298e6d0c07f0d3f5c70645043798
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
+<<<<<<< HEAD
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="htu-Jc-3yr">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="htu-Jc-3yr" id="cNX-bd-ggZ">
+=======
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9JJ-pD-JJ9">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9JJ-pD-JJ9" id="7Lb-m9-NkU">
+>>>>>>> ca062cca9fcb298e6d0c07f0d3f5c70645043798
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
+<<<<<<< HEAD
                             <outlet property="dataSource" destination="tkS-da-irk" id="kNN-jX-Wa2"/>
                             <outlet property="delegate" destination="tkS-da-irk" id="nIV-1R-FeF"/>
                         </connections>
@@ -34,6 +53,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mep-f8-eF3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="158" y="-599"/>
+=======
+                            <outlet property="dataSource" destination="xrb-sK-W5O" id="3Pt-61-TRo"/>
+                            <outlet property="delegate" destination="xrb-sK-W5O" id="uFi-Hw-CVN"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSM-Sp-BnV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-262" y="-601"/>
+>>>>>>> ca062cca9fcb298e6d0c07f0d3f5c70645043798
         </scene>
     </scenes>
     <resources>
