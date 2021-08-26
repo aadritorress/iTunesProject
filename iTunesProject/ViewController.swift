@@ -12,7 +12,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        title = "Browser"
+        title = "Browse"
         configureTableView()
         
         configItunes()
