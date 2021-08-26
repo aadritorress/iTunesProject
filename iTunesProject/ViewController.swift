@@ -12,7 +12,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        title = "Browser"
+        title = "Browse"
+        configureTableView()
         
         configItunes()
     }
@@ -32,4 +33,21 @@ class ViewController: UITableViewController {
     }
 }
 
+extension ViewController {
+    func configureTableView() {
+        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "TableViewCell")
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell else {
+            fatalError()
+        }
+        return cell
+    }
+}
 
