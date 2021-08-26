@@ -31,5 +31,3 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "music.note.list"), style: .plain, target: self, action: nil)
     }
 }
-
-
