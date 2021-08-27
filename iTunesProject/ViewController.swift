@@ -29,7 +29,7 @@ class ViewController: UITableViewController {
 //            barButtonSystemItem: .play, target: self, action: nil
 //        )
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "music.note.list"), style: .plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "music.note.list"), style: .plain, target: self, action: #selector(mySongsClicked))
     }
 }
 
@@ -51,7 +51,6 @@ extension ViewController {
     }
     
     @objc func cartClicked() {
-
         let storyboard = UIStoryboard(name: "CartViewStoryboard", bundle: nil)
         
         guard let cartVC = storyboard.instantiateInitialViewController() as? CartViewController else {
@@ -60,6 +59,16 @@ extension ViewController {
         }
         navigationController?.pushViewController(cartVC, animated: true)
         
+    }
+    
+    @objc func mySongsClicked() {
+        let storyboard = UIStoryboard(name: "MySongsStoryboard", bundle: nil)
+        
+        guard let mySongsVC = storyboard.instantiateInitialViewController() as? MySongsViewController else {
+            assertionFailure("Could not instantiate MySongsController")
+            return
+        }
+        navigationController?.pushViewController(mySongsVC, animated: true)
     }
 }
 
