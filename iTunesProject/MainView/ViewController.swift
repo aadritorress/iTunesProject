@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var albumsArr : [AlbumInfo] = []
+//    var cartArr : [AlbumInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +102,24 @@ extension ViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let sendButton = UIAlertAction(title: "Add to cart\n", style: .default, handler: { (action) -> Void in
+               print("Ok button tapped")
+           })
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+               print("Cancel button tapped")
+           })
+        
+        alert.addAction(sendButton)
+        alert.addAction(cancelButton)
+        
+        self.navigationController!.present(alert, animated: true, completion: nil)
+    }
+    
+    
     @objc func cartClicked() {
         let storyboard = UIStoryboard(name: "CartViewStoryboard", bundle: nil)
         
@@ -123,3 +142,12 @@ extension ViewController {
     }
 }
 
+
+extension ViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            let albumStr = albumsArr[indexPath.row].artworkUrl100
+            fetchImage(imageStr: albumStr, completion: { _ in })
+        }
+    }
+}
