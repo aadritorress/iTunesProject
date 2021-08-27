@@ -23,7 +23,7 @@ class ViewController: UITableViewController {
 //            barButtonSystemItem: .camera, target: self, action: nil
 //        )
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
         
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(
 //            barButtonSystemItem: .play, target: self, action: nil
@@ -48,6 +48,18 @@ extension ViewController {
             fatalError()
         }
         return cell
+    }
+    
+    @objc func cartClicked() {
+
+        let storyboard = UIStoryboard(name: "CartViewStoryboard", bundle: nil)
+        
+        guard let cartVC = storyboard.instantiateInitialViewController() as? CartViewController else {
+            assertionFailure("Could not instantiate CartViewController")
+            return
+        }
+        navigationController?.pushViewController(cartVC, animated: true)
+        
     }
 }
 
