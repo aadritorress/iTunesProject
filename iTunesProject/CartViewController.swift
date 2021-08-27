@@ -21,8 +21,6 @@ class CartViewController: UITableViewController {
 extension CartViewController {
     private func configNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .plain, target: self, action: nil)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Browse", style: .plain, target: self, action: nil)
     }
     
 }
