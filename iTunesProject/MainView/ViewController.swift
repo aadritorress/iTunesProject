@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    
+    var albumsArr : [AlbumInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,30 @@ class ViewController: UITableViewController {
         configureTableView()
         
         configItunes()
+        fetchData()
+    }
+    
+    private func fetchData() {
+        let songsStr = "https://itunes.apple.com/search?term=taylor&entity=album"
+        if let url = URL(string: songsStr){
+            URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
+                let decoder = JSONDecoder()
+                if let data = data {
+                    do {
+                        let albums = try decoder.decode(Albums.self, from: data)
+                        self.albumsArr = albums.results
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+            }).resume()
+        } else {
+            print("here")
+        }
+        
     }
 
     private func configItunes() {
@@ -40,14 +66,39 @@ extension ViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.albumsArr.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell else {
             fatalError()
         }
+        let imageStr = albumsArr[indexPath.row].artworkUrl100
+        cell.songTitle.text = albumsArr[indexPath.row].collectionName
+        cell.songPrice.text = String(albumsArr[indexPath.row].collectionPrice)
+        fetchImage(imageStr: imageStr, completion: { image in
+            cell.songImage.image = image
+        })
+        
         return cell
+    }
+    
+    func fetchImage(imageStr: String, completion: @escaping (UIImage?) -> Void) {
+        if let image = ImageCache.shared.read(imageStr: imageStr) {
+            completion(image)
+        } else {
+            if let imageURL = URL(string: imageStr) {
+                URLSession.shared.dataTask(with: imageURL) { data, r, e in
+                    guard let data = data else { return }
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data) {
+                            ImageCache.shared.write(imageStr: imageStr, image: image)
+                            completion(image)
+                        }
+                    }
+                }.resume()
+            }
+        }
     }
     
     @objc func cartClicked() {
