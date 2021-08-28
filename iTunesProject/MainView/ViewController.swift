@@ -10,20 +10,19 @@ import UIKit
 class ViewController: UITableViewController {
     
     var albumsArr : [AlbumInfo] = []
-//    var cartArr : [AlbumInfo] = []
+    var cartArr : [AlbumInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         title = "Browse"
         configureTableView()
-        
         configItunes()
         fetchData()
     }
     
     private func fetchData() {
-        let songsStr = "https://itunes.apple.com/search?term=taylor&entity=album"
+        let songsStr = "https://itunes.apple.com/search?term=travisscott&entity=album"
         if let url = URL(string: songsStr){
             URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 let decoder = JSONDecoder()
@@ -40,7 +39,7 @@ class ViewController: UITableViewController {
                 }
             }).resume()
         } else {
-            print("here")
+            fatalError()
         }
         
     }
@@ -105,8 +104,10 @@ extension ViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let sendButton = UIAlertAction(title: "Add to cart\n", style: .default, handler: { (action) -> Void in
-               print("Ok button tapped")
+        let sendButton = UIAlertAction(title: "Add to cart", style: .default, handler: { (action) -> Void in
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart.fill"), style: .plain, target: self, action: #selector(self.cartClicked))
+            
+            self.cartArr.append(self.albumsArr[indexPath.row])
            })
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
