@@ -14,7 +14,6 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Browse"
         configureTableView()
         configItunes()
@@ -22,7 +21,7 @@ class ViewController: UITableViewController {
     }
     
     private func fetchData() {
-        let songsStr = "https://itunes.apple.com/search?term=travisscott&entity=album"
+        let songsStr = "https://itunes.apple.com/search?term=taylor&entity=album"
         if let url = URL(string: songsStr){
             URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 let decoder = JSONDecoder()
