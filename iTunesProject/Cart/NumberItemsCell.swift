@@ -16,6 +16,4 @@ class NumberItemsCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    
 }
