@@ -9,6 +9,8 @@ import UIKit
 
 class MySongsCell: UITableViewCell {
 
+    @IBOutlet weak var songs: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
