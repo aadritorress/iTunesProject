@@ -25,6 +25,8 @@
 		A410F2D626D8119B00CE2213 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F2D526D8119B00CE2213 /* CartViewController.swift */; };
 		A410F2E026D939EF00CE2213 /* MySongsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A410F2DF26D939EE00CE2213 /* MySongsStoryboard.storyboard */; };
 		A410F2E226D93A1200CE2213 /* MySongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F2E126D93A1200CE2213 /* MySongsViewController.swift */; };
+		A410F2E526D9693E00CE2213 /* SongsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F2E426D9693E00CE2213 /* SongsModel.swift */; };
+		A410F2E726D9713900CE2213 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F2E626D9713900CE2213 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		A410F2D526D8119B00CE2213 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		A410F2DF26D939EE00CE2213 /* MySongsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySongsStoryboard.storyboard; sourceTree = "<group>"; };
 		A410F2E126D93A1200CE2213 /* MySongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySongsViewController.swift; sourceTree = "<group>"; };
+		A410F2E426D9693E00CE2213 /* SongsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsModel.swift; sourceTree = "<group>"; };
+		A410F2E626D9713900CE2213 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,20 +84,11 @@
 		870340C326D7DEEF00725CA7 /* iTunesProject */ = {
 			isa = PBXGroup;
 			children = (
-				A410F2CF26D7EA7F00CE2213 /* TableViewCell.swift */,
-				A410F2D026D7EA7F00CE2213 /* TableViewCell.xib */,
-				870340EA26D8F82B00725CA7 /* NumberItemsCell.swift */,
-				870340EB26D8F82B00725CA7 /* NumberItemsCell.xib */,
-				870340DE26D810DE00725CA7 /* TitleViewCell.swift */,
-				870340DF26D810DE00725CA7 /* TitleViewCell.xib */,
-				870340C826D7DEEF00725CA7 /* ViewController.swift */,
-				870340EE26D9080000725CA7 /* MySongsCell.swift */,
-				870340EF26D9080000725CA7 /* MySongsCell.xib */,
-				A410F2DF26D939EE00CE2213 /* MySongsStoryboard.storyboard */,
-				A410F2E126D93A1200CE2213 /* MySongsViewController.swift */,
-				870340CA26D7DEEF00725CA7 /* Main.storyboard */,
-				A410F2D326D80C2D00CE2213 /* CartViewStoryboard.storyboard */,
-				A410F2D526D8119B00CE2213 /* CartViewController.swift */,
+				A410F2E826D9724000CE2213 /* MainView */,
+				A410F2E926D972BF00CE2213 /* MySongs */,
+				A410F2E326D9691E00CE2213 /* Model */,
+				A410F2EA26D9731900CE2213 /* Cart */,
+				A410F2E626D9713900CE2213 /* ImageCache.swift */,
 				870340D226D7DEEF00725CA7 /* Info.plist */,
 				A410F2CC26D7E9A900CE2213 /* Supporting */,
 			);
@@ -109,6 +104,49 @@
 				870340CF26D7DEEF00725CA7 /* LaunchScreen.storyboard */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		A410F2E326D9691E00CE2213 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A410F2E426D9693E00CE2213 /* SongsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A410F2E826D9724000CE2213 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				870340CA26D7DEEF00725CA7 /* Main.storyboard */,
+				870340C826D7DEEF00725CA7 /* ViewController.swift */,
+				A410F2CF26D7EA7F00CE2213 /* TableViewCell.swift */,
+				A410F2D026D7EA7F00CE2213 /* TableViewCell.xib */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		A410F2E926D972BF00CE2213 /* MySongs */ = {
+			isa = PBXGroup;
+			children = (
+				A410F2E126D93A1200CE2213 /* MySongsViewController.swift */,
+				A410F2DF26D939EE00CE2213 /* MySongsStoryboard.storyboard */,
+				870340EE26D9080000725CA7 /* MySongsCell.swift */,
+				870340EF26D9080000725CA7 /* MySongsCell.xib */,
+			);
+			path = MySongs;
+			sourceTree = "<group>";
+		};
+		A410F2EA26D9731900CE2213 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				A410F2D526D8119B00CE2213 /* CartViewController.swift */,
+				A410F2D326D80C2D00CE2213 /* CartViewStoryboard.storyboard */,
+				870340EA26D8F82B00725CA7 /* NumberItemsCell.swift */,
+				870340EB26D8F82B00725CA7 /* NumberItemsCell.xib */,
+				870340DE26D810DE00725CA7 /* TitleViewCell.swift */,
+				870340DF26D810DE00725CA7 /* TitleViewCell.xib */,
+			);
+			path = Cart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A410F2E726D9713900CE2213 /* ImageCache.swift in Sources */,
+				A410F2E526D9693E00CE2213 /* SongsModel.swift in Sources */,
 				870340C926D7DEEF00725CA7 /* ViewController.swift in Sources */,
 				870340EC26D8F82B00725CA7 /* NumberItemsCell.swift in Sources */,
 				A410F2D126D7EA7F00CE2213 /* TableViewCell.swift in Sources */,
