@@ -127,6 +127,9 @@ extension ViewController {
             assertionFailure("Could not instantiate CartViewController")
             return
         }
+        
+        cartVC.purchases = self.cartArr
+        
         navigationController?.pushViewController(cartVC, animated: true)
         
     }

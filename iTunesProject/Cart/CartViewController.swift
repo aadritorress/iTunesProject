@@ -8,12 +8,17 @@
 import UIKit
 
 class CartViewController: UITableViewController {
+    
+    var purchases: [AlbumInfo] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Cart"
         configNavBar()
         myPurchases()
+        
     }
     
 }
@@ -33,23 +38,42 @@ extension CartViewController {
         
         let nib2 = UINib(nibName: "NumberItemsCell", bundle: nil)
         tableView.register(nib2, forCellReuseIdentifier: "NumberItemsCell")
-    }
+        }
+    
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return purchases.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 1 {
+        if indexPath.row == purchases.count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NumberItemsCell") as? NumberItemsCell else {
                 fatalError()
             }
+            let totalSongs = purchases.count
+            let songPrice = purchases.map { (song) -> Double in
+                song.collectionPrice
+            }
+//            print(purchases)
+//            print(songPrice)
+//            print(songPrice.reduce(0, +))
+            cell.numItems.text = "Num Items: \(String(totalSongs))"
+            cell.totalPrice.text = "Price: \(songPrice.reduce(0, +))"
             return cell
+            
+            
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TitleViewCell", for: indexPath) as! TitleViewCell
+            let selectedTitle = purchases[indexPath.row].collectionName
+            let selectedPrice = purchases[indexPath.row].collectionPrice
+//            print(selectedTitle, selectedPrice)
+            cell.songTitle.text = selectedTitle
+            cell.songPrice.text = String(selectedPrice)
             return cell
         }
     }
+
 }
 
 
