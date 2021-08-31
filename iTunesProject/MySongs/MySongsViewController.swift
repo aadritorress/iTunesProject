@@ -24,7 +24,7 @@ class MySongsViewController: UITableViewController {
 
 extension MySongsViewController {
     private func configNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark.circle"), style: .plain, target: self, action: #selector(xButtonClicked))
     }
 }
 
@@ -54,6 +54,26 @@ extension MySongsViewController {
                     fatalError()
                 }
             }
+    
+    @objc func xButtonClicked() {
+        let cacheDirectory = FileManager.SearchPathDirectory.cachesDirectory
+        let folderUrls = FileManager.default.urls(for: cacheDirectory, in: .userDomainMask)
+        guard let fileURL = folderUrls.first?.appendingPathComponent("songs") else {
+            fatalError()
+        }
+        self.purchases = []
+        guard let data = try? JSONEncoder().encode(self.purchases) else {
+            fatalError()
+        }
+        do {
+            try data.write(to: fileURL)
+        } catch {
+            fatalError()
+        }
+        self.tableView.reloadData()
+    }
+    
+    
     }
 
 
@@ -94,16 +114,4 @@ extension ViewController: CartDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
     }
     
-//    func changeCartFill() {
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
-//    }
-//
-//    func updateTotalPrice(row: Int) {
-////        self.cartTotal = self.cartTotal - self.albumsArr[row].collectionPrice
-//        print("test")
-//    }
-//
-//    func deleteEntireCart() {
-//        self.cartArr = []
-//    }
 }
