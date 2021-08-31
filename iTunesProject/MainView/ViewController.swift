@@ -129,6 +129,7 @@ extension ViewController {
         }
         
         cartVC.purchases = self.cartArr
+        cartVC.vcDelegate = self
         
         navigationController?.pushViewController(cartVC, animated: true)
         

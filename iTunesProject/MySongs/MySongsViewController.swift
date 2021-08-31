@@ -10,6 +10,7 @@ import UIKit
 class MySongsViewController: UITableViewController {
     
     var purchases: [AlbumInfo] = []
+    var cartTotal: [AlbumInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,3 +83,27 @@ extension MySongsViewController {
         return cell
         }
     }
+
+
+
+extension ViewController: CartDelegate {
+
+    func emptyCartAction(row: Int) {
+        self.cartArr = []
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
+    }
+    
+//    func changeCartFill() {
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
+//    }
+//
+//    func updateTotalPrice(row: Int) {
+////        self.cartTotal = self.cartTotal - self.albumsArr[row].collectionPrice
+//        print("test")
+//    }
+//
+//    func deleteEntireCart() {
+//        self.cartArr = []
+//    }
+}
