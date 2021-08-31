@@ -45,14 +45,29 @@ extension CartViewController {
                 guard let fileURL = folderUrls.first?.appendingPathComponent("songs") else {
                     fatalError()
                 }
-        guard let data = try? JSONEncoder().encode(self.purchases) else {
-                    fatalError()
-                }
-                do {
-                    try data.write(to: fileURL)
-                } catch {
-                    fatalError()
-                }
+        guard let oldData = FileManager.default.contents(atPath: fileURL.path) else {
+            fatalError()
+//            throw DiskStorageError.noData
+        }
+        var newArr : [AlbumInfo] = []
+        
+        do {
+            let object = try JSONDecoder().decode([AlbumInfo].self, from: oldData)
+            newArr = object
+            newArr = newArr + self.purchases
+            tableView.reloadData()
+        } catch {
+            fatalError()
+        }
+
+        guard let data = try? JSONEncoder().encode(newArr) else {
+            fatalError()
+        }
+        do {
+            try data.write(to: fileURL)
+        } catch {
+            fatalError()
+        }
     
     self.purchases = []
     self.tableView.reloadData()
@@ -103,7 +118,9 @@ extension CartViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == purchases.count {
+        if self.purchases.count == 0 {
+            return UITableViewCell()
+        } else if indexPath.row == purchases.count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NumberItemsCell") as? NumberItemsCell else {
                 fatalError()
             }
