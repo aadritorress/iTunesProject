@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Albums: Decodable {
+struct Albums: Codable {
     var results : [AlbumInfo]
 }
 
-struct AlbumInfo: Decodable {
+struct AlbumInfo: Codable {
     var collectionName: String
     var collectionPrice: Double
     var artworkUrl100: String

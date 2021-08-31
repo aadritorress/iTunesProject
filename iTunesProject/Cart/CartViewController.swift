@@ -10,6 +10,7 @@ import UIKit
 class CartViewController: UITableViewController {
     
     var purchases: [AlbumInfo] = []
+    var mySongs : [AlbumInfo] = []
     
     
     override func viewDidLoad() {
@@ -25,11 +26,38 @@ class CartViewController: UITableViewController {
 
 extension CartViewController {
     private func configNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buy", style: .plain, target: self, action: #selector(buyAction))
+        
+//        self.mySongs.append(contentsOf: purchases)
+        _ = purchases.map { (song) -> String in
+            song.collectionName
+        }
+//        print(songName)
     }
 }
 
-
+extension CartViewController {
+    @objc func buyAction() {
+        let cacheDirectory = FileManager.SearchPathDirectory.cachesDirectory
+                let folderUrls = FileManager.default.urls(for: cacheDirectory, in: .userDomainMask)
+                
+                guard let fileURL = folderUrls.first?.appendingPathComponent("songs") else {
+                    fatalError()
+                }
+        guard let data = try? JSONEncoder().encode(self.purchases) else {
+                    fatalError()
+                }
+                do {
+                    try data.write(to: fileURL)
+                } catch {
+                    fatalError()
+                }
+    
+    self.purchases = []
+    self.tableView.reloadData()
+    
+    }
+}
 
 extension CartViewController {
     func myPurchases() {
@@ -73,7 +101,6 @@ extension CartViewController {
             return cell
         }
     }
-
 }
 
 

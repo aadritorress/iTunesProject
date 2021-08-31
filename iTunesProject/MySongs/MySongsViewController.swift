@@ -8,15 +8,17 @@
 import UIKit
 
 class MySongsViewController: UITableViewController {
+    
+    var purchases: [AlbumInfo] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "My Songs"
         configNavBar()
         mySongs()
+        fetchMySongs()
     }
-    
-    
 }
 
 extension MySongsViewController {
@@ -26,19 +28,57 @@ extension MySongsViewController {
 }
 
 extension MySongsViewController {
+    func fetchMySongs() {
+        let cacheDirectory = FileManager.SearchPathDirectory.cachesDirectory
+                let folderUrls = FileManager.default.urls(for: cacheDirectory, in: .userDomainMask)
+                
+                guard let fileURL = folderUrls.first?.appendingPathComponent("songs") else {
+                    fatalError()
+                }
+                guard let newData = FileManager.default.contents(atPath: fileURL.path) else {
+                    fatalError()
+        //            throw DiskStorageError.noData
+                }
+                do {
+                    let object = try JSONDecoder().decode([AlbumInfo].self, from: newData)
+                    purchases = object
+//                    print(purchases)
+//                    let songName = purchases.map { (song) -> String in
+//                        song.collectionName
+//                    }
+//                    print(songName)
+//
+                    tableView.reloadData()
+                } catch {
+                    fatalError()
+                }
+            }
+    }
+
+
+extension MySongsViewController {
     func mySongs() {
         let nib = UINib(nibName: "MySongsCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "MySongsCell")
+//        print(allSongs)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return purchases.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MySongsCell") as? MySongsCell else {
             fatalError()
         }
+//        let songName = purchases.map { (song) -> String in
+//            song.collectionName
+//        }
+//        for song in songName {
+//            print("\(song)")
+        let songPurchased = purchases[indexPath.row].collectionName
+            cell.songs.text = songPurchased
+        
         return cell
         }
     }
