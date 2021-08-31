@@ -10,8 +10,8 @@ import UIKit
 class CartViewController: UITableViewController {
     
     var purchases: [AlbumInfo] = []
-    var mySongs : [AlbumInfo] = []
-    
+    var mySongs: [AlbumInfo] = []
+    var vcDelegate: CartDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,7 @@ extension CartViewController {
 }
 
 extension CartViewController {
+    
     @objc func buyAction() {
         let cacheDirectory = FileManager.SearchPathDirectory.cachesDirectory
                 let folderUrls = FileManager.default.urls(for: cacheDirectory, in: .userDomainMask)
@@ -55,9 +56,17 @@ extension CartViewController {
     
     self.purchases = []
     self.tableView.reloadData()
-    
+    vcDelegate?.emptyCartAction(row: 0)
     }
+    
+    
 }
+
+
+protocol CartDelegate {
+    func emptyCartAction(row: Int)
+}
+
 
 extension CartViewController {
     func myPurchases() {
