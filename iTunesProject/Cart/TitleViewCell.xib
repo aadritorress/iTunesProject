@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhi-Vr-Amj">
-                        <rect key="frame" x="249" y="40" width="29" height="20.5"/>
+                        <rect key="frame" x="271" y="40" width="29" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,8 +34,7 @@
                     <constraint firstItem="dhi-Vr-Amj" firstAttribute="top" secondItem="J1U-dY-7mm" secondAttribute="top" constant="40" id="5J3-8a-zkc"/>
                     <constraint firstAttribute="bottom" secondItem="JH1-iU-iNu" secondAttribute="bottom" constant="20" id="8Bv-vt-oVf"/>
                     <constraint firstItem="JH1-iU-iNu" firstAttribute="leading" secondItem="J1U-dY-7mm" secondAttribute="leading" constant="20" id="8gt-6c-xfN"/>
-                    <constraint firstAttribute="trailing" secondItem="dhi-Vr-Amj" secondAttribute="trailing" constant="42" id="GJ0-6q-9rz"/>
-                    <constraint firstItem="dhi-Vr-Amj" firstAttribute="leading" secondItem="JH1-iU-iNu" secondAttribute="trailing" constant="202.5" id="IeC-DZ-KNH"/>
+                    <constraint firstAttribute="trailing" secondItem="dhi-Vr-Amj" secondAttribute="trailing" constant="20" id="GJ0-6q-9rz"/>
                     <constraint firstItem="JH1-iU-iNu" firstAttribute="top" secondItem="J1U-dY-7mm" secondAttribute="top" constant="20" id="Yei-Ey-XtQ"/>
                 </constraints>
             </tableViewCellContentView>
