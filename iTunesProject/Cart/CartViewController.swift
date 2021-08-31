@@ -10,8 +10,10 @@ import UIKit
 class CartViewController: UITableViewController {
     
     var purchases: [AlbumInfo] = []
-    var mySongs: [AlbumInfo] = []
+//    var mySongs: [AlbumInfo] = []
     var vcDelegate: CartDelegate?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +21,7 @@ class CartViewController: UITableViewController {
         title = "Cart"
         configNavBar()
         myPurchases()
-        
     }
-    
 }
 
 extension CartViewController {
@@ -65,6 +65,7 @@ extension CartViewController {
 
 protocol CartDelegate {
     func emptyCartAction(row: Int)
+    func deleteFromCart(row: Int)
 }
 
 
@@ -77,7 +78,25 @@ extension CartViewController {
         tableView.register(nib2, forCellReuseIdentifier: "NumberItemsCell")
         }
     
-
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let taken = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+                print("Just Swiped Taken", action)
+                completion(true)
+            //delete song from array
+            let removedSong = self.purchases.remove(at: indexPath.row)
+             self.tableView.reloadData()
+            self.vcDelegate?.deleteFromCart(row: indexPath.row)
+     //        print(purchases.remove(at: indexPath.row))
+             print(removedSong)
+           
+            }
+        taken.backgroundColor =  UIColor.red
+        
+        let config = UISwipeActionsConfiguration(actions: [taken])
+                config.performsFirstActionWithFullSwipe = false
+        return config
+        }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return purchases.count + 1
@@ -111,5 +130,4 @@ extension CartViewController {
         }
     }
 }
-
 

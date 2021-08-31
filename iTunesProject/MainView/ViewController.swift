@@ -58,6 +58,20 @@ class ViewController: UITableViewController {
     }
 }
 
+extension ViewController: CartDelegate {
+    func deleteFromCart(row: Int) {
+        self.cartArr.remove(at: row)
+        if cartArr.count == 0 {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .done, target: self, action: #selector(cartClicked)) }
+    }
+    
+    func emptyCartAction(row: Int) {
+        self.cartArr = []
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
+    }
+}
+
 extension ViewController {
     func configureTableView() {
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
@@ -132,7 +146,6 @@ extension ViewController {
         cartVC.vcDelegate = self
         
         navigationController?.pushViewController(cartVC, animated: true)
-        
     }
     
     @objc func mySongsClicked() {
@@ -145,7 +158,6 @@ extension ViewController {
         navigationController?.pushViewController(mySongsVC, animated: true)
     }
 }
-
 
 extension ViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {

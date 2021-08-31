@@ -106,12 +106,12 @@ extension MySongsViewController {
 
 
 
-extension ViewController: CartDelegate {
-
-    func emptyCartAction(row: Int) {
-        self.cartArr = []
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
-    }
-    
-}
+//extension ViewController: CartDelegate {
+//
+//    func emptyCartAction(row: Int) {
+//        self.cartArr = []
+//        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartClicked))
+//    }
+//    
+//}
